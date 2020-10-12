@@ -14,6 +14,7 @@ function anims()
 end
 
 function renderDrill(pos)
+	pos[1] = pos[1]*object.direction()	-- Since the transformation group stuff takes direction into account, need to remove the direction from the position
 	animator.resetTransformationGroup("vertical")
 	animator.scaleTransformationGroup("vertical", {1,math.min(0,pos[2] + 2)})
 	animator.translateTransformationGroup("vertical", {pos[1],1}); 
@@ -34,11 +35,11 @@ end
 
 function drillReset(soft)
 	if soft then
-		storage.drillPos = storage.drillPos or {2,-1}
+		storage.drillPos = storage.drillPos or {2*object.direction(),-1}
 		storage.drillTarget = storage.drillPos or {0,0}
 		storage.drillDir = storage.drillPos or {0,0}
 	else
-		storage.drillPos = {2,-1}
+		storage.drillPos = {2*object.direction(),-1}
 		storage.drillTarget = {0,0}
 		storage.drillDir = {0,0}
 	end

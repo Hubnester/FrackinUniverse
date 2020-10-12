@@ -14,12 +14,11 @@
 
 	"inventoryIcon": "/objects/kheAA/kheAA_quarry/densiniumquarryicon.png",
 	"orientations": [{
-		"image": "densiniumquarry.png:<color>.off",
+		"dualImage": "densiniumquarry.png:<color>.off",
 		"imagePosition": [0, 0],
 
 		"spaceScan": 0.1,
-		"anchors": ["bottom"],
-		"direction": "right"
+		"anchors": ["bottom"]
 	}],
 
 	"scripts": ["/objects/kheAA/kheAA_quarry/kheAA_quarrywide.lua"],
