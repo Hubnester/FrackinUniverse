@@ -516,11 +516,9 @@ function excavatorCommon.getNextDrillTarget()
 		leftMax = -storage.width - 1
 	end
 	if excavatorCommon.vars.direction == 1 and target[1] >= rightMax then
-		sb.logInfo("Right Max")
 		excavatorCommon.vars.direction = -1
 		target[2] = target[2] - 1
 	elseif excavatorCommon.vars.direction == -1 and target[1] <= leftMax then
-		sb.logInfo("Left Max")
 		excavatorCommon.vars.direction = 1
 		target[2] = target[2] - 1
 	else
