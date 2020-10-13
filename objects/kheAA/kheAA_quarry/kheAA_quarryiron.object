@@ -14,15 +14,15 @@
 
 	"inventoryIcon": "/objects/kheAA/kheAA_quarry/ironquarryicon.png",
 	"orientations": [{
-		"image": "ironquarry.png:<color>.off",
+		"dualImage": "ironquarry.png:<color>.off",
 		"imagePosition": [0, 0],
+		"flipped" : true,
 
 		"spaceScan": 0.1,
-		"anchors": ["bottom"],
-		"direction": "right"
+		"anchors": ["bottom"]
 	}],
 
-	"scripts": ["/objects/kheAA/kheAA_quarry/kheAA_quarrywide.lua"],
+	"scripts": ["/objects/kheAA/kheAA_quarry/kheAA_quarry.lua"],
 	"scriptDelta": 1,
 
 	"animation": "/objects/kheAA/kheAA_quarry/kheAA_quarry.animation",
@@ -58,5 +58,6 @@
 	"kheAA_maxWidth": 16,
 	"kheAA_maxDepth": 64,
 	"kheAA_drillPower": 16,
-	"kheAA_vacuumRange": 8
+	"kheAA_vacuumRange": 8,
+	"kheAA_quarryWide" : true
 }

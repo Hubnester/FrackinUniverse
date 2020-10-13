@@ -14,15 +14,14 @@
 
 	"inventoryIcon": "/objects/kheAA/kheAA_quarry/titaniumquarryicon.png",
 	"orientations": [{
-		"image": "titaniumquarry.png:<color>.off",
+		"dualImage": "titaniumquarry.png:<color>.off",
 		"imagePosition": [0, 0],
 
 		"spaceScan": 0.1,
-		"anchors": ["bottom"],
-		"direction": "right"
+		"anchors": ["bottom"]
 	}],
 
-	"scripts": ["/objects/kheAA/kheAA_quarry/kheAA_quarrywide.lua"],
+	"scripts": ["/objects/kheAA/kheAA_quarry/kheAA_quarry.lua"],
 	"scriptDelta": 1,
 
 	"animation": "/objects/kheAA/kheAA_quarry/kheAA_quarry.animation",
@@ -58,5 +57,6 @@
 	"kheAA_maxWidth": 24,
 	"kheAA_maxDepth": 96,
 	"kheAA_drillPower": 24,
-	"kheAA_vacuumRange": 12
+	"kheAA_vacuumRange": 12,
+	"kheAA_quarryWide" : true
 }

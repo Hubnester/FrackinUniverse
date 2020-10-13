@@ -21,7 +21,7 @@
 		"anchors": ["bottom"]
 	}],
 
-	"scripts": ["/objects/kheAA/kheAA_quarry/kheAA_quarrywide.lua"],
+	"scripts": ["/objects/kheAA/kheAA_quarry/kheAA_quarry.lua"],
 	"scriptDelta": 1,
 
 	"animation": "/objects/kheAA/kheAA_quarry/kheAA_quarry.animation",
@@ -57,5 +57,6 @@
 	"kheAA_maxWidth": 32,
 	"kheAA_maxDepth": 128,
 	"kheAA_drillPower": 32,
-	"kheAA_vacuumRange": 16
+	"kheAA_vacuumRange": 16,
+	"kheAA_quarryWide" : true
 }

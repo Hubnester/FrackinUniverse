@@ -1,6 +1,7 @@
 require "/scripts/kheAA/excavatorCommon.lua"
 
 function init()
+	kheAA_quarryWide = config.getParameter("kheAA_quarryWide")
 	drillReset(true)
 	excavatorCommon.init()
 end
@@ -14,6 +15,10 @@ function anims()
 end
 
 function renderDrill(pos)
+	pos[1] = pos[1]*object.direction()	-- Since the transformation group stuff takes direction into account, need to remove the direction from the position
+	if object.direction() == -1 then
+		pos[1] = pos[1] + ((kheAA_quarryWide and 2) or 1) - 0.5	-- Make it render everything in the right place (since the stuff for rendering assumes it starts 1 or 2 blocks away from the objects position)
+	end
 	animator.resetTransformationGroup("vertical")
 	animator.scaleTransformationGroup("vertical", {1,math.min(0,pos[2] + 2)})
 	animator.translateTransformationGroup("vertical", {pos[1],1}); 
@@ -33,12 +38,16 @@ function animHorizontal()
 end
 
 function drillReset(soft)
+	local pos1 = (kheAA_quarryWide and 2) or 1
+	if object.direction() == -1 then
+		pos1 = 0
+	end
 	if soft then
-		storage.drillPos = storage.drillPos or {1,-1}
+		storage.drillPos = storage.drillPos or {pos1,-1}
 		storage.drillTarget = storage.drillPos or {0,0}
 		storage.drillDir = storage.drillPos or {0,0}
 	else
-		storage.drillPos = {1,-1}
+		storage.drillPos = {pos1,-1}
 		storage.drillTarget = {0,0}
 		storage.drillDir = {0,0}
 	end

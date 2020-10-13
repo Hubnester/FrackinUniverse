@@ -33,7 +33,7 @@ function excavatorCommon.init()
 		return
 	end
 	excavatorCommon.vars={}
-	excavatorCommon.vars.direction=util.clamp(object.direction(),-1,1)
+	excavatorCommon.vars.direction=object.direction()
 	excavatorCommon.vars.facing=object.direction()
 	excavatorCommon.vars.isDrill=config.getParameter("kheAA_isDrill",false)
 	excavatorCommon.vars.isPump=config.getParameter("kheAA_isPump",false)
@@ -160,13 +160,18 @@ function states.moveDrillBar(dt)
 	animator.translateTransformationGroup("horizontal", {2,1})
 	if step >= 1 then
 		step = 0
+		local xModifier = storage.width + 2
+		if excavatorCommon.vars.facing == -1 then
+			xModifier = -storage.width
+		end
 		if (storage.width < excavatorCommon.vars.maxWidth) then
-			local searchPos = {world.xwrap(storage.position[1] + storage.width + 2), storage.position[2] + 1}
+			local searchPos = {world.xwrap(storage.position[1] + xModifier), storage.position[2] + 1}
 			if not world.material(searchPos, "foreground") then
 				storage.width = storage.width + 1
+				xModifier = xModifier + excavatorCommon.vars.facing
 			end
 		end
-		local searchPos = {world.xwrap(storage.position[1] + storage.width + 2), storage.position[2] + 1}
+		local searchPos = {world.xwrap(storage.position[1] + xModifier), storage.position[2] + 1}
 		if storage.width >= excavatorCommon.vars.maxWidth or world.material(searchPos, "foreground") then
 			animator.setAnimationState("drillState", "on")
 			renderDrill(storage.drillPos)
@@ -508,12 +513,12 @@ function excavatorCommon.getNextDrillTarget()
 	local target = {storage.drillPos[1], storage.drillPos[2]}
 	local rightMax
 	local leftMax
-	if excavatorCommon.vars.facing > 0 then
+	if excavatorCommon.vars.facing == 1 then
 		rightMax = storage.width + 1
 		leftMax = 2
 	else
-		rightMax = -2
-		leftMax = -storage.width - 1
+		rightMax = 0
+		leftMax = -storage.width + 1
 	end
 	if excavatorCommon.vars.direction == 1 and target[1] >= rightMax then
 		excavatorCommon.vars.direction = -1

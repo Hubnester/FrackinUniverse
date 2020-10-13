@@ -14,12 +14,11 @@
 
 	"inventoryIcon": "/objects/kheAA/kheAA_quarry/kheAA_quarryicon.png",
 	"orientations": [{
-		"image": "kheAA_quarry.png:<color>.off",
+		"dualImage": "kheAA_quarry.png:<color>.off",
 		"imagePosition": [0, 0],
 
 		"spaceScan": 0.1,
-		"anchors": ["bottom"],
-		"direction": "right"
+		"anchors": ["bottom"]
 	}],
 
 	"scripts": ["/objects/kheAA/kheAA_quarry/kheAA_quarry.lua"],
@@ -58,5 +57,6 @@
 	"kheAA_maxWidth": 8,
 	"kheAA_maxDepth": 32,
 	"kheAA_drillPower": 8,
-	"kheAA_vacuumRange": 4
+	"kheAA_vacuumRange": 4,
+	"kheAA_quarryWide" : false
 }
