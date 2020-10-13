@@ -15,17 +15,17 @@ function anims()
 end
 
 function renderDrill(pos)
-	pos[1] = pos[1]*object.direction()	-- Since the transformation group stuff takes direction into account, need to remove the direction from the position
+	local pos1 = pos[1]*object.direction()	-- Since the transformation group stuff takes direction into account, need to remove the direction from the position
 	if object.direction() == -1 then
-		pos[1] = pos[1] + ((kheAA_quarryWide and 2) or 1) - 0.5	-- Make it render everything in the right place (since the stuff for rendering assumes it starts 1 or 2 blocks away from the objects position)
+		pos1 = pos1 + ((kheAA_quarryWide and 2) or 1) - 0.5	-- Make it render everything in the right place (since the stuff for rendering assumes it starts 1 or 2 blocks away from the objects position)
 	end
 	animator.resetTransformationGroup("vertical")
 	animator.scaleTransformationGroup("vertical", {1,math.min(0,pos[2] + 2)})
-	animator.translateTransformationGroup("vertical", {pos[1],1}); 
+	animator.translateTransformationGroup("vertical", {pos1,1}); 
 	animator.resetTransformationGroup("drill")
-	animator.translateTransformationGroup("drill", {pos[1] - 0.5, pos[2] + 1}); 
+	animator.translateTransformationGroup("drill", {pos1 - 0.5, pos[2] + 1}); 
 	animator.resetTransformationGroup("connector")
-	animator.translateTransformationGroup("connector", {pos[1], 1}); 
+	animator.translateTransformationGroup("connector", {pos1, 1}); 
 end
 
 function animHorizontal()

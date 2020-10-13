@@ -16,7 +16,6 @@
 	"orientations": [{
 		"dualImage": "ironquarry.png:<color>.off",
 		"imagePosition": [0, 0],
-		"flipped" : true,
 
 		"spaceScan": 0.1,
 		"anchors": ["bottom"]
