@@ -155,8 +155,12 @@ function states.moveDrillBar(dt)
 		step = step + 0.2
 		excavatorCommon.mainDelta=0
 	end
+	local width = storage.width
+	if kheAA_facing == -1 and not kheAA_quarryWide then
+		width = width - 1
+	end
 	animator.resetTransformationGroup("horizontal")
-	animator.scaleTransformationGroup("horizontal", {storage.width+step,1})
+	animator.scaleTransformationGroup("horizontal", {width+step,1})
 	animator.translateTransformationGroup("horizontal", {2,1})
 	if step >= 1 then
 		step = 0
