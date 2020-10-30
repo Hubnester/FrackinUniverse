@@ -252,7 +252,7 @@ end
 --Returns active seed when tray is removed from world
 function die()
 	if storage.currentseed then
-		storage.currentseed.count = getFertSum("seedUse")
+		--storage.currentseed.count = getFertSum("seedUse")
 		world.spawnItem(storage.currentseed, entity.position())
 	end
 end
@@ -316,7 +316,7 @@ function growPlant(growthmod, dt)
 		-- Perennial plants should return yeild of seeds for balance purposes.
 		-- By returning yield seeds we handle part of perennials regrowing from the same seed.
 		if stage().resetToStage then
-			storage.currentseed.count = getFertSum("yield")
+			--storage.currentseed.count = getFertSum("yield")--removing because this causes massive seed generation.
 			fu_sendOrStoreItems(0, storage.currentseed, seedAvoid)
 			storage.perennialSeedName = storage.currentseed.name
 		end
@@ -402,7 +402,7 @@ function genGrowthData()
 
 	-- Set currentStage and possibly growth depending on perennial seed data
 	if storage.perennialSeedName and storage.stage[storage.stages].resetToStage and
-			storage.currentseed.name == storage.perennialSeedName then
+		storage.currentseed.name == storage.perennialSeedName then
 		storage.currentStage = math.min(storage.stages, math.max(1, storage.stage[storage.stages].resetToStage + 1))
 		storage.growth = storage.currentStage == 1 and 0 or	storage.stage[storage.currentStage - 1].val
 	else
@@ -453,7 +453,9 @@ function doSeedIntake()
 	end
 
 	--Consume seed.
-	world.containerConsumeAt(entity.id(),seedslot,getFertSum("seedUse"))
+	local consumed=getFertSum("seedUse")
+	world.containerConsumeAt(entity.id(),seedslot,consumed)
+	storage.currentseed.count=consumed
 
 	return true
 end
@@ -488,7 +490,7 @@ function fu_isAddonCommunityFarm() return true end
 function getTenantNumber()
 	tenantNumber = 0
 	if parentCore and world.entityExists(parentCore) then
-		tenantNumber = world.callScriptedEntity(parentCore,"getTenants")
+		tenantNumber = world.callScriptedEntity(parentCore,"getTenantsNum")
 	else
 		transferUtil.zoneAwake(transferUtil.pos2Rect(storage.position,storage.linkRange))
 
@@ -496,7 +498,7 @@ function getTenantNumber()
 
 		for _, objectId in pairs(objectIds) do
 				if world.callScriptedEntity(objectId,"fu_isColonyCore") then
-					tenantNumber = world.callScriptedEntity(objectId,"getTenants")
+					tenantNumber = world.callScriptedEntity(objectId,"getTenantsNum")
 					parentCore = objectId
 				end
 		end
