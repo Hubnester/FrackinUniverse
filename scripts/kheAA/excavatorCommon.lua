@@ -156,7 +156,7 @@ function states.moveDrillBar(dt)
 		excavatorCommon.mainDelta=0
 	end
 	local width = storage.width
-	if kheAA_facing == -1 and not kheAA_quarryWide then
+	if excavatorCommon.vars.facing == -1 and not kheAA_quarryWide then
 		width = width - 1
 	end
 	animator.resetTransformationGroup("horizontal")
@@ -519,9 +519,9 @@ function excavatorCommon.getNextDrillTarget()
 	local leftMax
 	if excavatorCommon.vars.facing == 1 then
 		rightMax = storage.width + 1
-		leftMax = 2
+		leftMax = 2 + ((kheAA_quarryWide and 1) or 0)
 	else
-		rightMax = 0
+		rightMax = -1
 		leftMax = -storage.width + 1
 	end
 	if excavatorCommon.vars.direction == 1 and target[1] >= rightMax then

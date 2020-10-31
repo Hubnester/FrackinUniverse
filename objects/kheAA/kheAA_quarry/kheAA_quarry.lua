@@ -18,7 +18,7 @@ end
 function renderDrill(pos)
 	local pos1 = pos[1]*kheAA_facing	-- Since the transformation group stuff takes direction into account, need to remove the direction from the position
 	if kheAA_facing == -1 then
-		pos1 = pos1 + ((kheAA_quarryWide and 2) or 1) - 0.5	-- Make it render everything in the right place (since the stuff for rendering assumes it starts 1 or 2 blocks away from the objects position)
+		pos1 = pos1 + ((kheAA_quarryWide and 1) or 0) - 0.5	-- Make it render everything in the right place (since the stuff for rendering assumes it starts 1 or 2 blocks away from the objects position)
 	end
 	animator.resetTransformationGroup("vertical")
 	animator.scaleTransformationGroup("vertical", {1,math.min(0,pos[2] + 2)})
@@ -45,7 +45,7 @@ end
 function drillReset(soft)
 	local pos1 = (kheAA_quarryWide and 2) or 1
 	if kheAA_facing == -1 then
-		pos1 = 0
+		pos1 = -1
 	end
 	if soft then
 		storage.drillPos = storage.drillPos or {pos1,-1}
