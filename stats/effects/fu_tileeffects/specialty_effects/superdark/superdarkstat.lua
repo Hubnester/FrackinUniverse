@@ -1,5 +1,5 @@
 --particleList={"blurshadowradiallarge","blurshadowradialmid","blurshadowradial"}
-particleList={"/animations/superdark/superdarklarge.png","/animations/superdark/superdarkmid.png","/animations/superdark/superdark.png"}
+particleList={"/animations/superdark/superdarksuperlarge.png","/animations/superdark/superdarklarge.png","/animations/superdark/superdarkmid.png","/animations/superdark/superdark.png"}
 
 
 function init()
@@ -48,13 +48,10 @@ function handleDarkStats(terminate)
 		local dL=status.statusProperty("darklevel") or 0
 		if dL<darklevel then
 			status.setStatusProperty("darklevel",darklevel)
-			dL=darklevel
 			status.setStatusProperty("darkpriority",darkpriority)
-			dP=darkpriority
 		elseif dL==darklevel then
 			if dP<darkpriority then
 				status.setStatusProperty("darkpriority",darkpriority)
-				dP=darkpriority
 			end
 		end
 	else

@@ -14,6 +14,14 @@ function init()
 
 	self.madnessCount = player.currency("fumadnessresource") or 0
 	self.timer = 10.0 -- was zero, instant event on plopping in. giving players a short grace period. some of us teleport around a LOT.
+	local buffer=status.activeUniqueStatusEffectSummary()
+	for _,v in pairs(buffer) do
+		if buffer[1]=="mad" then
+			status.removeEphemeralEffect("mad")
+			status.addEphemeralEffect("mad",self.timer)
+			break
+		end
+	end
 	self.player = entity.id()
 	math.randomseed(util.seedTime())
 	self.randEvent = math.random(1,100)
@@ -44,8 +52,8 @@ function init()
 
 	local elementalTypes=root.assetJson("/damage/elementaltypes.config")
 	local buffer={}
-	
-	
+
+
 	storage.armorSetData=storage.armorSetData or {}
 	message.setHandler("recordFUArmorSetBonus",function(_,_,setName) storage.armorSetData[setName]=os.time() end)
 
@@ -131,6 +139,7 @@ function randomEvent()
 	self.curseDuration_resource = self.curseDuration * 2.2
 	self.curseDuration_stat = self.curseDuration * 2.5
 	self.curseDuration_fast = self.curseDuration *0.25
+	status.removeEphemeralEffect("mad")
 	status.addEphemeralEffect("mad",self.timer)
 
 	--[[if self.randEvent < 0 then --failsafe
@@ -229,7 +238,7 @@ function randomEvent()
 			status.addEphemeralEffect("madnessslow1",self.curseDuration_status) -- old one (staffslow2) was too strong and easily cheated.
 			player.radioMessage("madness2")
 		elseif self.randEvent == 13 then
-			status.addEphemeralEffect("toxiccloudmadness",self.curseDuration) -- swapped for a madness specific variant.
+			status.addEphemeralEffect("toxiccloudmadness",self.curseDuration_status) -- swapped for a madness specific variant.
 			status.addEphemeralEffect("madnessslow2",self.curseDuration_status)
 			player.radioMessage("madnessbeans")
 		elseif self.randEvent == 14 then
@@ -407,7 +416,7 @@ function update(dt)
 		if self.timerCounter >= (1+afkLvl) then
 			if afkLvl <= 3 then
 				player.addCurrency("fuscienceresource",1 + self.bonus)
-				if (math.random(1,20) + status.stat("researchBonus")) > 18 then  -- only apply the bonus research from stat X amount of the time based on a d20 roll higher than 18. Bonus influences this.
+				if (math.random(1,20) + status.stat("researchBonus")) >= 18 then  -- only apply the bonus research from stat X amount of the time based on a d20 roll higher than 18. Bonus influences this.
 					player.addCurrency("fuscienceresource",status.stat("researchBonus"))
 				end
 			end
@@ -511,7 +520,7 @@ function checkMadnessArt()
 end
 
 function handleSetOrphans(dt)
-	if not orphanSetBonusTimer or orphanSetBonusTimer >= 1.0 then
+	if orphanSetBonusTimer and orphanSetBonusTimer >= 1.0 then
 		orphanSetBonusTimer=0.0
 		local t=os.time()
 		for set,bd in pairs(storage.armorSetData) do
@@ -521,7 +530,7 @@ function handleSetOrphans(dt)
 			end
 		end
 	else
-		orphanSetBonusTimer=orphanSetBonusTimer+dt
+		orphanSetBonusTimer=(orphanSetBonusTimer or -1.0)+dt
 	end
 end
 
