@@ -14,7 +14,7 @@
 
 	"inventoryIcon": "/objects/kheAA/kheAA_quarry/ironquarryicon.png",
 	"orientations": [{
-		"dualImage": "ironquarry.png:<color>.off",
+		"dualImage": "ironquarry.png:<color>.off?flipx",
 		"imagePosition": [0, 0],
 
 		"spaceScan": 0.1,
@@ -58,5 +58,7 @@
 	"kheAA_maxDepth": 64,
 	"kheAA_drillPower": 16,
 	"kheAA_vacuumRange": 8,
-	"kheAA_quarryWide" : true
+	"kheAA_quarryWide" : true,
+	
+	"kheAA_flipQuarryImage" : true
 }

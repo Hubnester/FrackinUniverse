@@ -1,4 +1,7 @@
 {
+	"globalTagDefaults" : {
+		"kheAA_flipQuarryImage" : ""
+	},
 	"animatedParts" : {
 		"stateTypes" : {
 			"quarryState" : {
@@ -53,13 +56,13 @@
 					"quarryState" : {
 						"off" : {
 							"properties" : {
-								"image" : "<partImage>:<color>.off"
+								"image" : "<partImage>:<color>.off<kheAA_flipQuarryImage>"
 							}
 						},
 
 						"on" : {
 							"properties" : {
-								"image" : "<partImage>:<color>.<frame>"
+								"image" : "<partImage>:<color>.<frame><kheAA_flipQuarryImage>"
 							}
 						}
 					}

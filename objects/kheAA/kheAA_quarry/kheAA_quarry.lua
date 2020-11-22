@@ -1,6 +1,9 @@
 require "/scripts/kheAA/excavatorCommon.lua"
 
 function init()
+	if config.getParameter("kheAA_flipQuarryImage", false) then
+		 animator.setGlobalTag("kheAA_flipQuarryImage", "?flipx")
+	end
 	kheAA_quarryWide = config.getParameter("kheAA_quarryWide")
 	kheAA_facing = object.direction()	-- Since this is needed before the excavatorCommon one is set
 	drillReset(true)
@@ -45,7 +48,7 @@ end
 function drillReset(soft)
 	local pos1 = (kheAA_quarryWide and 2) or 1
 	if kheAA_facing == -1 then
-		pos1 = -1
+		pos1 = 0
 	end
 	if soft then
 		storage.drillPos = storage.drillPos or {pos1,-1}

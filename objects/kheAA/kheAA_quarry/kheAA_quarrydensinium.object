@@ -14,7 +14,7 @@
 
 	"inventoryIcon": "/objects/kheAA/kheAA_quarry/densiniumquarryicon.png",
 	"orientations": [{
-		"dualImage": "densiniumquarry.png:<color>.off",
+		"dualImage": "densiniumquarry.png:<color>.off?flipx",
 		"imagePosition": [0, 0],
 
 		"spaceScan": 0.1,
@@ -58,5 +58,7 @@
 	"kheAA_maxDepth": 128,
 	"kheAA_drillPower": 32,
 	"kheAA_vacuumRange": 16,
-	"kheAA_quarryWide" : true
+	"kheAA_quarryWide" : true,
+	
+	"kheAA_flipQuarryImage" : true
 }
