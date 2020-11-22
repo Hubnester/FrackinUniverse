@@ -15,9 +15,9 @@ function anims()
 	if storage.drillPos==nil then
 		drillReset()
 	end
-	local initialPos = {0, -1}
+	local initialPos = {0, storage.drillPos[2]}
 	if kheAA_facing == 1 then
-		initialPos[1] = storage.drillPos
+		initialPos[1] = storage.drillPos[1]
 	else
 		initialPos[1] = (storage.width or 0) - 0.5
 	end
