@@ -31,8 +31,8 @@ end
 
 function animHorizontal()
 	local width = storage.width
-	if kheAA_facing == -1 and not kheAA_quarryWide then
-		width = width - 1
+	if kheAA_quarryWide then
+		width = width + 1
 	end
 	animator.resetTransformationGroup("horizontal")
 	animator.scaleTransformationGroup("horizontal", {width + step,1})
