@@ -11,17 +11,23 @@ function init()
 end
 
 function anims()
-	animHorizontal({storage.width,1})
+	animHorizontal()
 	if storage.drillPos==nil then
 		drillReset()
 	end
-	renderDrill(storage.drillPos)
+	local initialPos = {0, -1}
+	if kheAA_facing == 1 then
+		initialPos[1] = storage.drillPos
+	else
+		initialPos[1] = (storage.width or 0) - 0.5
+	end
+	renderDrill(initialPos, true)
 end
 
-function renderDrill(pos)
+function renderDrill(pos, initial)
 	local pos1 = pos[1]*kheAA_facing	-- Since the transformation group stuff takes direction into account, need to remove the direction from the position
-	if kheAA_facing == -1 then
-		pos1 = pos1 + 0.5	-- Make it render everything in the right place (since the stuff for rendering assumes it starts 1 or 2 blocks away from the objects position)
+	if kheAA_facing == -1 and not initial then
+		pos1 = pos1 + ((kheAA_quarryWide and 2) or 1)
 	end
 	animator.resetTransformationGroup("vertical")
 	animator.scaleTransformationGroup("vertical", {1,math.min(0,pos[2] + 2)})
