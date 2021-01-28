@@ -1,0 +1,37 @@
+{
+	"itemName": "fu_kevinbeegun",
+	"price": 150,
+	"level": 1,
+	"maxStack": 1,
+	"rarity": "rare",
+	"description": "A gun that shoots angry bees to attack your foes.",
+	"shortdescription": "Bee Gun",
+	"tooltipKind": "gunkevin",
+	"category": "uniqueWeapon",
+	"twoHanded": true,
+	"itemTags": ["weapon", "ranged", "upgradeableWeapon"],
+
+	"inventoryIcon": "fu_kevinbeegun.png",
+	"animation": "fu_kevinbeegun.animation",
+	"animationParts": {
+		"gun": "fu_kevinbeegun.png"
+	},
+
+	"scripts": ["fu_kevinbeegun.lua"],
+
+	"fireOffset": [3.25, 0.625],
+
+	"critChance": 0,
+	"critBonus": 0,
+	"elementalType": "cosmic",
+
+	"primaryAbility": {
+		"energyUsage": 15,
+		"baseDps": 0,
+		"fireTime": 0.5,
+		"inaccuracy": 0,
+		"spawnDataProjectile" : "fu_beebriefcasetemp"
+	},
+	
+	"builder": "/items/buildscripts/buildunrandweapon.lua"
+}
